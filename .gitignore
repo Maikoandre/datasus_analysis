@@ -3,3 +3,5 @@ notebooks/__marimo__/session
 data
 .venv
 datasets
+
+test_run.py

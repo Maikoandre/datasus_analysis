@@ -44,6 +44,8 @@ def _():
     # Carrega a base de dados
     df = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/RD202401.csv', sep=';', low_memory=False)
     df_cnes = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/cnes_coord.csv')
+    df_cnes['NO_FANTASIA'] = 'Hospital ' + df_cnes['co_cnes'].astype(str)
+    df_cnes['CO_CNES'] = df_cnes['co_cnes']
     df_municipios = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/municipios.csv')
     df
     return df, df_cnes, df_municipios, pd, px
@@ -428,17 +430,18 @@ def _(df_cnes):
 @app.cell
 def _(df_bahia_2, df_cnes, px):
     # Manter apenas as colunas relevantes
-    df_cnes_1 = df_cnes[['co_ibge', 'municipio']].copy()
+    df_cnes_1 = df_cnes[['co_ibge', 'municipio', 'co_cnes', 'NO_FANTASIA', 'CO_CNES']].copy()
     df_cnes_1['co_ibge'] = df_cnes_1['co_ibge'].astype(str).str.strip()
     df_cnes_1['municipio'] = df_cnes_1['municipio'].astype(str).str.strip()
+    df_cnes_1['co_cnes'] = df_cnes_1['co_cnes'].astype(str).str.strip()
     df_bahia_3 = df_bahia_2.dropna(subset=['CNES']).copy()
     # === 2️⃣ Preparar o DataFrame de internações ===
     df_bahia_3['CNES'] = df_bahia_3['CNES'].astype(str).str.strip()
-    for col in ['co_ibge', 'municipio']:
+    for col in ['co_cnes', 'municipio']:
         if col in df_bahia_3.columns:
     # 🔒 Remover colunas duplicadas se existirem
             df_bahia_3.drop(columns=col, inplace=True)
-    df_bahia_3 = df_bahia_3.merge(df_cnes_1[['co_ibge', 'municipio']], left_on='CNES', right_on='co_ibge', how='left')
+    df_bahia_3 = df_bahia_3.merge(df_cnes_1[['co_cnes', 'municipio']].drop_duplicates(), left_on='CNES', right_on='co_cnes', how='left')
     frequencia_hospitais = df_bahia_3.groupby(['CNES', 'municipio']).size().reset_index(name='Total_Internacoes').sort_values(by='Total_Internacoes', ascending=False)
     top_10_hospitais = frequencia_hospitais.head(10)
     # === 3️⃣ Fazer o merge de forma segura ===
@@ -467,7 +470,7 @@ def _(mo):
 @app.cell
 def _(df_bahia_3, df_cnes_1, px):
     # Manter apenas as colunas necessárias
-    df_cnes_2 = df_cnes_1[['co_cnes', 'NO_FANTASIA']].copy()
+    df_cnes_2 = df_cnes_1[['co_cnes', 'NO_FANTASIA', 'CO_CNES']].copy()
     df_cnes_2['co_cnes'] = df_cnes_2['co_cnes'].astype(str).str.strip()
     df_cnes_2['NO_FANTASIA'] = df_cnes_2['NO_FANTASIA'].astype(str).str.strip()
     df_bahia_4 = df_bahia_3.dropna(subset=['CNES', 'DIAS_PERM']).copy()
@@ -511,7 +514,7 @@ def _(mo):
 
 @app.cell
 def _(df_bahia_4, df_cnes_2, pd, px):
-    df_cnes_3 = df_cnes_2[['CO_CNES', 'NO_FANTASIA']].copy()
+    df_cnes_3 = df_cnes_2[['CO_CNES', 'NO_FANTASIA', 'co_cnes']].copy()
     df_cnes_3['CO_CNES'] = df_cnes_3['CO_CNES'].astype(str).str.strip()
     df_cnes_3['NO_FANTASIA'] = df_cnes_3['NO_FANTASIA'].astype(str).str.strip()
     df_bahia_5 = df_bahia_4.copy()
@@ -559,7 +562,7 @@ def _(mo):
 
 @app.cell
 def _(df_bahia_5, df_cnes_3, px):
-    df_cnes_4 = df_cnes_3[['CO_CNES', 'NO_FANTASIA']].copy()
+    df_cnes_4 = df_cnes_3[['CO_CNES', 'NO_FANTASIA', 'co_cnes']].copy()
     df_cnes_4['CO_CNES'] = df_cnes_4['CO_CNES'].astype(str).str.strip()
     df_cnes_4['NO_FANTASIA'] = df_cnes_4['NO_FANTASIA'].astype(str).str.strip()
     df_bahia_6 = df_bahia_5.copy()
@@ -600,7 +603,7 @@ def _(mo):
 
 @app.cell
 def _(df_bahia_6, df_cnes_4, px):
-    df_cnes_5 = df_cnes_4[['CO_CNES', 'NO_FANTASIA']].copy()
+    df_cnes_5 = df_cnes_4[['CO_CNES', 'NO_FANTASIA', 'co_cnes']].copy()
     df_cnes_5['CO_CNES'] = df_cnes_5['CO_CNES'].astype(str).str.strip()
     df_cnes_5['NO_FANTASIA'] = df_cnes_5['NO_FANTASIA'].astype(str).str.strip()
     df_bahia_6['CNES'] = df_bahia_6['CNES'].astype(str).str.strip()
