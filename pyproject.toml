@@ -1,7 +1,7 @@
 [project]
 name = "datasus-analysis"
 version = "0.1.0"
-description = "Add your description here"
+description = "Analisando internações de alto risco no SUS."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
