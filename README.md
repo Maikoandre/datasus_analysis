@@ -1,113 +1,81 @@
-# Projeto de Análise de Dados do DataSUS (SIH)
+# 🏥 Projeto de Análise de Dados do DataSUS (SIH)
 
-Este projeto foca na Análise Exploratória de Dados (EDA) de internações hospitalares do Sistema de Informações Hospitalares (SIH) do DataSUS. O objetivo é processar, analisar e extrair insights a partir dos metadados do SIH.
+Este projeto foca na Análise Exploratória de Dados (EDA) de internações hospitalares do Sistema de Informações Hospitalares (SIH) do DataSUS, com foco especial no estado da Bahia.
 
-O projeto é composto por duas partes principais:
-1.  **Análise Exploratória (`notebooks/sih_analysis.ipynb`):** Um notebook Jupyter que detalha o processo de coleta, limpeza, pré-processamento e análise exploratória dos dados brutos (em formato `.csv`).
-2.  **Dashboard Interativo (`app.py`):** Uma aplicação Streamlit que carrega dados pré-processados (em formato `.parquet`) e apresenta os principais indicadores e visualizações focados nas internações do estado da Bahia (BA).
+O projeto utiliza ferramentas modernas de Python para processar volumes de dados do SUS e extrair insights estratégicos sobre a saúde pública regional.
 
-## 📊 Principais Análises
+---
 
-O dashboard interativo (`app.py`) foca nos dados da Bahia e apresenta as seguintes métricas e visualizações:
+## 🚀 Como Executar
 
-### Visão Geral (Bahia)
-* Total de Internações
-* Custo Total e Custo Médio por Internação
-* Percentual e Total de Óbitos
+Este projeto utiliza o **[uv](https://github.com/astral-sh/uv)** para gerenciamento extremamente rápido de dependências e ambientes virtuais.
 
-### Análise Demográfica
-* Distribuição de internações por Sexo
-* Distribuição por Faixa Etária
-* Distribuição por Raça/Cor
+### 1. Instalação
+```bash
+# Clone o repositório
+git clone https://github.com/Maikoandre/DataSUS-Analysis.git
+cd DataSUS-Analysis
 
-### Análise Clínica e Operacional
-* Tempo Médio de Permanência por Faixa Etária
-* Distribuição das internações por Capítulo do CID-10 (Diagnóstico Principal)
+# Sincronize as dependências (cria o .venv automaticamente)
+uv sync
+```
 
-### Análise Geográfica e Hospitalar
-* Top 10 Municípios (local do estabelecimento) com maior número de internações.
-* Top 10 Hospitais (por CNES) com:
-    * Maior Número de Internações
-    * Maior Taxa de Mortalidade (com filtro de N mínimo de internações)
-    * Maior Tempo Médio de Permanência
-    * Maior Proporção de Internações em UTI
+### 2. Executar o Dashboard (Streamlit)
+```bash
+uv run streamlit run app.py
+```
 
-## 🗂️ Estrutura do Projeto
+### 3. Executar o Notebook (Marimo)
+O projeto utiliza **Marimo**, um notebook reativo que garante que o código e os resultados estejam sempre em sincronia:
+```bash
+uv run marimo edit notebooks/sih.py
+```
 
-* `app.py`: Aplicação principal do Dashboard Streamlit.
-* `notebooks/sih_analysis.ipynb`: Notebook Jupyter com a análise exploratória (EDA) completa.
-* `data/`: Diretório onde os dados devem ser armazenados.
-* `LICENSE`: Licença do projeto.
-* `.gitignore`: Arquivo de configuração do Git.
+---
+
+## 📊 O Dashboard (Bahia)
+
+O dashboard interativo (`app.py`) apresenta uma visão executiva das Autorizações de Internação Hospitalar (AIH):
+
+*   **Métricas em Tempo Real**: Total de internações, Taxa de Mortalidade, Custo Total e Custo Médio.
+*   **Perfil Clínico**: Distribuição de internações por Capítulo do CID-10 (Diagnóstico Principal).
+*   **Geografia da Saúde**: Top 10 municípios por volume de internação.
+*   **Demografia**: Distribuição de internações por faixa etária.
+*   **Dados Detalhados**: Rankings de hospitais (CNES) por volume e indicadores de obstetrícia/risco.
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Python**
-* **Streamlit**: Para o dashboard interativo.
-* **Pandas**: Para manipulação e análise dos dados.
-* **Jupyter Lab/Notebook**: Para a análise exploratória.
-* **Plotly**: Para visualizações interativas (usado no notebook).
-* **Seaborn & Matplotlib**: Para visualizações estáticas (usado no `app.py`).
-* **PyArrow**: Para leitura de arquivos `.parquet`.
+*   **Python 3.11+**
+*   **[uv](https://astral-sh/uv)**: Gerenciamento moderno de pacotes e ambientes.
+*   **[Streamlit](https://streamlit.io/)**: Framework para o dashboard interativo.
+*   **[Marimo](https://marimo.io/)**: Notebooks reativos para a análise exploratória.
+*   **[Plotly Express](https://plotly.com/python/plotly-express/)**: Visualizações dinâmicas e interativas.
+*   **Pandas**: Processamento e manipulação de dados.
 
-## 🏁 Como Executar
+---
 
-Siga estas instruções para configurar e executar o projeto localmente.
+## 🗂️ Estrutura do Projeto
 
-### 1. Pré-requisitos
+*   `app.py`: Aplicação principal do Dashboard.
+*   `notebooks/sih.py`: Notebook Marimo com a análise exploratória completa.
+*   `datasets/`: Diretório para armazenamento dos arquivos de dados (SIH/IBGE).
+*   `pyproject.toml`: Definição de dependências e configurações do projeto.
 
-É necessário ter o Python 3.x e o `pip` instalados.
+---
 
-### 2. Instalação
+## 📥 Obtenção dos Dados
 
-1.  Clone o repositório:
-    ```bash
-    git clone https://github.com/Maikoandre/DataSUS-Analysis.git
-    cd DataSUS-Analysis
-    ```
+Os dados brutos devem ser baixados do **[Portal DataSUS (FTP)](https://datasus.saude.gov.br/transferencia-de-arquivos/)** e organizados na pasta `datasets/`:
 
-2.  (Recomendado) Crie e ative um ambiente virtual:
-    ```bash
-    python -m venv venv
-    # Linux/macOS
-    source venv/bin/activate
-    # Windows
-    .\venv\Scripts\activate
-    ```
+1.  **RD202401.csv**: Arquivo de AIH Reduzida (exemplo: Janeiro de 2024).
+2.  **municipios.csv**: Tabela de apoio com nomes e códigos IBGE.
+3.  **cnes_coord.csv**: Cadastro Nacional de Estabelecimentos de Saúde com nomes e coordenadas.
 
-3.  Instale as dependências:
-    ```bash
-    pip install streamlit pandas matplotlib seaborn plotly pyarrow
-    ```
-
-### 3. Obtenção dos Dados
-
-Este repositório não armazena os arquivos de dados. Você deve baixá-los manualmente e colocá-los em um diretório chamado `datasets/` na raiz do projeto.
-
-Os arquivos necessários são:
-* **Dados do SIH (AIH Reduzida):**
-    * Para o **Notebook (`sih_analysis.ipynb`)**: Requer o arquivo `RD202401.csv` (ou o mês/ano de sua escolha) do [portal DataSUS](https://datasus.saude.gov.br/transferencia-de-arquivos/).
-    * Para o **Dashboard (`app.py`)**: Requer o arquivo `RD202401.parquet`. O `app.py` espera este formato; você pode converter o `.csv` para `.parquet` para otimizar o carregamento.
-* **Dados Auxiliares:**
-    * `municipios.csv`: Arquivo de municípios brasileiros (provavelmente do IBGE).
-    * `cnes_estabelecimentos.csv`: Arquivo de Cadastro Nacional de Estabelecimentos de Saúde (CNES), disponível no [portal DataSUS](https://datasus.saude.gov.br/transferencia-de-arquivos/).
-
-### 4. Executando a Análise (Notebook)
-
-1.  Inicie o Jupyter Lab:
-    ```bash
-    jupyter lab
-    ```
-2.  Abra o arquivo `notebooks/sih_analysis.ipynb` e execute as células.
-
-### 5. Executando o Dashboard (Streamlit)
-
-1.  Execute o `app.py` no seu terminal:
-    ```bash
-    streamlit run app.py
-    ```
-2.  O dashboard será aberto automaticamente no seu navegador.
+---
 
 ## 📄 Licença
 
 Este projeto é distribuído sob os termos da licença especificada no arquivo `LICENSE`.
+
