@@ -15,13 +15,14 @@ def _():
 def _():
     import subprocess
 
-    return (subprocess,)
+    return
 
 
-@app.cell
-def _(subprocess):
-    #! ls /kaggle/input/sistema-de-informaes-hospitalares-sus
-    subprocess.call(['ls', '/kaggle/input/sistema-de-informaes-hospitalares-sus'])
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Projeto DataSUS
+    """)
     return
 
 
@@ -41,9 +42,9 @@ def _():
     pd.options.display.max_seq_items = 113
 
     # Carrega a base de dados
-    df = pd.read_csv('datasets/RD202401.csv', sep=';', low_memory=False)
-    df_cnes = pd.read_csv('datasets/cnes_estabelecimentos.csv', sep=';', encoding='latin1', low_memory=False)
-    df_municipios = pd.read_csv('../datasets/municipios.csv')
+    df = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/RD202401.csv', sep=';', low_memory=False)
+    df_cnes = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/cnes_coord.csv')
+    df_municipios = pd.read_csv('/home/maiko/Projects/datasus_analysis/datasets/municipios.csv')
     df
     return df, df_cnes, df_municipios, pd, px
 
@@ -119,10 +120,16 @@ def _(df_bahia, pd):
 
 @app.cell
 def _(df_municipios):
+    df_municipios.columns
+    return
+
+
+@app.cell
+def _(df_municipios):
     # Convertendo o código do município para string e pegando apenas os 6 primeiros caracteres
     # e filtrando para o estado da Bahia
-    df_municipios['Codigo'] = df_municipios['Codigo'].astype(str).str[:6]
-    df_municipios_1 = df_municipios[df_municipios['Codigo'].str.startswith('29')]
+    df_municipios['codigo_ibge'] = df_municipios['codigo_ibge'].astype(str).str[:6]
+    df_municipios_1 = df_municipios[df_municipios['codigo_ibge'].str.startswith('29')]
     df_municipios_1
     return (df_municipios_1,)
 
@@ -142,9 +149,10 @@ def _(df_bahia_1, df_municipios_1, pd, px):
     contagem_internacoes = df_bahia_1['MUNIC_MOV'].value_counts().nlargest(10).reset_index()
     contagem_internacoes['MUNIC_MOV'] = contagem_internacoes['MUNIC_MOV'].astype(str)
     contagem_internacoes.columns = ['MUNIC_MOV', 'INTER']
-    top_municipios = pd.merge(contagem_internacoes, df_municipios_1, left_on='MUNIC_MOV', right_on='Codigo')
+    top_municipios = pd.merge(contagem_internacoes, df_municipios_1, left_on='MUNIC_MOV', right_on='codigo_ibge')
     # Merge com o dataframe de municípios
-    top_municipios['Municipios'] = top_municipios['Nome'] + ' - ' + top_municipios['Uf']
+    # Converta explicitamente a coluna numérica para string
+    top_municipios['Municipios'] = top_municipios['nome'] + ' - ' + top_municipios['codigo_uf'].astype(str)
     fig = px.bar(top_municipios, x='INTER', y='Municipios', orientation='h', color='Municipios', color_discrete_sequence=px.colors.sequential.Viridis, title='Top 10 Municípios com maior número de internações', labels={'INTER': 'Total de Internações', 'Municipios': 'Município de Estabelecimento'})
     fig.update_layout(showlegend=False, xaxis_title='Total de Internações', yaxis_title='Município de Estabelecimento', height=600)
     # Criando coluna com nome formatado
@@ -412,25 +420,31 @@ def _(mo):
 
 
 @app.cell
+def _(df_cnes):
+    df_cnes.columns
+    return
+
+
+@app.cell
 def _(df_bahia_2, df_cnes, px):
     # Manter apenas as colunas relevantes
-    df_cnes_1 = df_cnes[['CO_CNES', 'NO_FANTASIA']].copy()
-    df_cnes_1['CO_CNES'] = df_cnes_1['CO_CNES'].astype(str).str.strip()
-    df_cnes_1['NO_FANTASIA'] = df_cnes_1['NO_FANTASIA'].astype(str).str.strip()
+    df_cnes_1 = df_cnes[['co_ibge', 'municipio']].copy()
+    df_cnes_1['co_ibge'] = df_cnes_1['co_ibge'].astype(str).str.strip()
+    df_cnes_1['municipio'] = df_cnes_1['municipio'].astype(str).str.strip()
     df_bahia_3 = df_bahia_2.dropna(subset=['CNES']).copy()
     # === 2️⃣ Preparar o DataFrame de internações ===
     df_bahia_3['CNES'] = df_bahia_3['CNES'].astype(str).str.strip()
-    for col in ['CO_CNES', 'NO_FANTASIA']:
+    for col in ['co_ibge', 'municipio']:
         if col in df_bahia_3.columns:
     # 🔒 Remover colunas duplicadas se existirem
             df_bahia_3.drop(columns=col, inplace=True)
-    df_bahia_3 = df_bahia_3.merge(df_cnes_1[['CO_CNES', 'NO_FANTASIA']], left_on='CNES', right_on='CO_CNES', how='left')
-    frequencia_hospitais = df_bahia_3.groupby(['CNES', 'NO_FANTASIA']).size().reset_index(name='Total_Internacoes').sort_values(by='Total_Internacoes', ascending=False)
+    df_bahia_3 = df_bahia_3.merge(df_cnes_1[['co_ibge', 'municipio']], left_on='CNES', right_on='co_ibge', how='left')
+    frequencia_hospitais = df_bahia_3.groupby(['CNES', 'municipio']).size().reset_index(name='Total_Internacoes').sort_values(by='Total_Internacoes', ascending=False)
     top_10_hospitais = frequencia_hospitais.head(10)
     # === 3️⃣ Fazer o merge de forma segura ===
     print('Top 10 Hospitais da Bahia por Número de Internações:')
-    print(top_10_hospitais[['NO_FANTASIA', 'Total_Internacoes']].to_markdown(index=False))
-    fig_8 = px.bar(top_10_hospitais, x='Total_Internacoes', y='NO_FANTASIA', orientation='h', color='Total_Internacoes', color_continuous_scale='Blues', text='Total_Internacoes', title='Top 10 Hospitais por Número de Internações - Bahia', labels={'Total_Internacoes': 'Total de Internações', 'NO_FANTASIA': 'Hospital (Nome Fantasia)'})
+    print(top_10_hospitais[['municipio', 'Total_Internacoes']].to_markdown(index=False))
+    fig_8 = px.bar(top_10_hospitais, x='Total_Internacoes', y='municipio', orientation='h', color='Total_Internacoes', color_continuous_scale='Blues', text='Total_Internacoes', title='Top 10 Hospitais por Número de Internações - Bahia', labels={'Total_Internacoes': 'Total de Internações', 'municipio': 'Hospital (Nome Fantasia)'})
     fig_8.update_traces(textposition='outside', hovertemplate='<b>Hospital:</b> %{y}<br><b>Internações:</b> %{x}<extra></extra>')
     fig_8.update_layout(coloraxis_showscale=False, showlegend=False, xaxis_title='Total de Internações', yaxis_title='Hospital', height=600, margin=dict(l=150, r=20, t=60, b=40))
     # === 4️⃣ Contagem de internações por hospital ===
@@ -453,17 +467,17 @@ def _(mo):
 @app.cell
 def _(df_bahia_3, df_cnes_1, px):
     # Manter apenas as colunas necessárias
-    df_cnes_2 = df_cnes_1[['CO_CNES', 'NO_FANTASIA']].copy()
-    df_cnes_2['CO_CNES'] = df_cnes_2['CO_CNES'].astype(str).str.strip()
+    df_cnes_2 = df_cnes_1[['co_cnes', 'NO_FANTASIA']].copy()
+    df_cnes_2['co_cnes'] = df_cnes_2['co_cnes'].astype(str).str.strip()
     df_cnes_2['NO_FANTASIA'] = df_cnes_2['NO_FANTASIA'].astype(str).str.strip()
     df_bahia_4 = df_bahia_3.dropna(subset=['CNES', 'DIAS_PERM']).copy()
     # === 2️⃣ Preparar o DataFrame de internações ===
     df_bahia_4['CNES'] = df_bahia_4['CNES'].astype(str).str.strip()
-    for col_1 in ['CO_CNES', 'NO_FANTASIA']:
+    for col_1 in ['co_cnes', 'NO_FANTASIA']:
         if col_1 in df_bahia_4.columns:
     # Garantir que não há colunas conflitantes antes do merge
             df_bahia_4.drop(columns=col_1, inplace=True)
-    df_bahia_4 = df_bahia_4.merge(df_cnes_2[['CO_CNES', 'NO_FANTASIA']], left_on='CNES', right_on='CO_CNES', how='left')
+    df_bahia_4 = df_bahia_4.merge(df_cnes_2[['co_cnes', 'NO_FANTASIA']], left_on='CNES', right_on='co_cnes', how='left')
     faltando_nome = df_bahia_4['NO_FANTASIA'].isna().sum()
     print(f'Hospitais sem nome encontrado no CNES: {faltando_nome}')
     # === 3️⃣ Fazer o merge com CNES ===
