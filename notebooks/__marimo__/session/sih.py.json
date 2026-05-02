@@ -1,0 +1,474 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.4",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "5d1879833e3d8338a7dad81b19a077d7",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "77c842e481b3bb2a7468303b3c2b9d5f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "2159c039e2dc0cf283e8bc1ab61f48c5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"etapa-1-coleta-de-dados\">Etapa 1: Coleta de dados</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "68c936ef2f6681575dd85f656233ea1f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "e09a349c2a812dcb17dde61f2e2e0147",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"etapa-2-limpeza-e-preparacao-dos-dados\">Etapa 2: Limpeza e Prepara\u00e7\u00e3o dos dados</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "fcd10ead1b94e06a763abcae369f3d16",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "6e103c4d530511c7fce430e4061ee084",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "6a2ae429492f0f3cd6be898e11d98749",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "990d9e8c17b4586deeb6415a24e621a2",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "d65fe8a186e2b7633917d181432e9a0e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "d250326499227eb50a8ca3db66a49240",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "a500d59f3a5d74fb2a0de154212d5c2c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "a254646fa0745b689fc4c3b04f68701f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "cfadf74b2f3eb207565144b7e7ceb111",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "29535a6bc2120468246a832f5fb8ce38",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"etapa-3-analise-exploratoria\">Etapa 3: An\u00e1lise Explorat\u00f3ria</h1>\n<h2 id=\"pergunta-1-quais-cidades-tem-o-maior-numero-de-internacoes\">Pergunta 1: Quais cidades tem o maior numero de interna\u00e7\u00f5es?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "bfd256d2bbe179b509e129bafeaa7ebd",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "31464fff0ce760a42a9713ff642d2569",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-2-qual-e-a-distribuicao-de-internacoes-por-sexo-dos-pacientes-na-bahia\">Pergunta 2: Qual \u00e9 a distribui\u00e7\u00e3o de interna\u00e7\u00f5es por sexo dos pacientes na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "b9d60ca688d9143455f6713849bdc952",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Vxnm",
+      "code_hash": "11b396be9f7c14e81000a6c5de28f85a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-3-qual-e-a-faixa-etaria-mais-frequente-entre-os-pacientes-internados-em-hospitais-baianos\">Pergunta 3: Qual \u00e9 a faixa et\u00e1ria mais frequente entre os pacientes internados em hospitais baianos?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "DnEU",
+      "code_hash": "96dfcab285e20b144016549b179a12df",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ulZA",
+      "code_hash": "2e709a347e32402ac905a84bedb709d6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-4-qual-e-a-idade-media-dos-pacientes-internados-na-bahia-por-especialidade-de-leito-espec\">Pergunta 4: Qual \u00e9 a idade m\u00e9dia dos pacientes internados na Bahia por especialidade de leito (ESPEC)?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ecfG",
+      "code_hash": "54dd5ae9985a3bde6373d1c392188b3c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Pvdt",
+      "code_hash": "9036ca452da52061dbb6fc0952e9c1bc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-5-qual-e-o-percentual-de-obitos-entre-as-internacoes-na-bahia\">Pergunta 5: Qual \u00e9 o percentual de \u00f3bitos entre as interna\u00e7\u00f5es na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZBYS",
+      "code_hash": "5a0ceacadd47c8efdb08cf905e2afa6e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aLJB",
+      "code_hash": "5ba97c311ad5af4b9107fdee3730fd04",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-6-qual-e-a-proporcao-de-gestantes-de-risco-entre-as-internacoes-obstetricas-realizadas-na-bahia\">Pergunta 6: Qual \u00e9 a propor\u00e7\u00e3o de gestantes de risco entre as interna\u00e7\u00f5es obst\u00e9tricas realizadas na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nHfw",
+      "code_hash": "dd35ac7468c487214e8c3eb2b36ce1e8",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "xXTn",
+      "code_hash": "d83e8ef05dc8614abe209e45e96e98bd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-7-qual-e-a-distribuicao-de-pacientes-por-racacor-nos-hospitais-da-bahia\">Pergunta 7: Qual \u00e9 a distribui\u00e7\u00e3o de pacientes por ra\u00e7a/cor nos hospitais da Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "AjVT",
+      "code_hash": "ff66062527748dd96baf07ade913d10c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "pHFh",
+      "code_hash": "f5142a0aef4d491b0a5fa8e5e304924b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-8-qual-e-o-tempo-medio-de-permanencia-por-faixa-etaria-no-estado-da-bahia\">Pergunta 8: Qual \u00e9 o tempo m\u00e9dio de perman\u00eancia por faixa et\u00e1ria no estado da Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "NCOB",
+      "code_hash": "ad8ae9c69a853eb87582ef6a7adc27ea",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aqbW",
+      "code_hash": "9c9b50aa3ec547643b60c878683a9c95",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-9-ha-diferencas-no-tempo-de-permanencia-entre-homens-e-mulheres-internados-na-bahia\">Pergunta 9: H\u00e1 diferen\u00e7as no tempo de perman\u00eancia entre homens e mulheres internados na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TRpd",
+      "code_hash": "3a43353ba6c48f61e5869f2e649fd437",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TXez",
+      "code_hash": "247c811cc64c5d6d612d2efcf60ac5bd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-10-qual-e-a-proporcao-de-internacoes-com-infeccao-hospitalar-nos-hospitais-baianos\">Pergunta 10: Qual \u00e9 a propor\u00e7\u00e3o de interna\u00e7\u00f5es com infec\u00e7\u00e3o hospitalar nos hospitais baianos?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dNNg",
+      "code_hash": "ecd03055e24435fe9ec78dee6292a2ac",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "yCnT",
+      "code_hash": "263f3f14f6aeb5ad59c16ec7d6fb762c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-11-quais-hospitais-da-bahia-registraram-o-maior-numero-de-internacoes\">Pergunta 11: Quais hospitais da Bahia registraram o maior n\u00famero de interna\u00e7\u00f5es?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wlCL",
+      "code_hash": "88194ecd349cd215f425b8eea1226d74",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "kqZH",
+      "code_hash": "501a8a5eead0b8212488b5d87a32d4f6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-12-qual-e-o-tempo-medio-de-permanencia-por-hospital-baiano\">Pergunta 12: Qual \u00e9 o tempo m\u00e9dio de perman\u00eancia por hospital baiano?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wAgl",
+      "code_hash": "e9dafb9c6ad5a5f3cc3e3ded68b2fbe1",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "rEll",
+      "code_hash": "0f127fdc4567b4c357afab76a6289597",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-13-quais-hospitais-da-bahia-tem-maior-taxa-de-mortalidade-hospitalar\">Pergunta 13: Quais hospitais da Bahia t\u00eam maior taxa de mortalidade hospitalar?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dGlV",
+      "code_hash": "2a43f7d9eedd3f25b8f3e1ca0ce070fc",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SdmI",
+      "code_hash": "4a4543cc477a617d677a5c6e29216194",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-14-qual-e-o-valor-medio-total-val_tot-das-aihs-por-hospital-no-estado-da-bahia\">Pergunta 14: Qual \u00e9 o valor m\u00e9dio total (VAL_TOT) das AIHs por hospital no estado da Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lgWD",
+      "code_hash": "927113cbbcbff0fc8e8b1e634e2a2f90",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "yOPj",
+      "code_hash": "bfc326053e94dbba79cc66f3a3d9ff81",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-15-quais-hospitais-baianos-tem-maior-proporcao-de-internacoes-em-uti\">Pergunta 15: Quais hospitais baianos t\u00eam maior propor\u00e7\u00e3o de interna\u00e7\u00f5es em UTI?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "fwwy",
+      "code_hash": "e90f605e5d40f9eb09ba9836072994c8",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "LJZf",
+      "code_hash": "84d42cb2586f41f8c329e9fc58f247b8",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-16-qual-e-o-valor-total-gasto-com-internacoes-hospitalares-na-bahia\">Pergunta 16: Qual \u00e9 o valor total gasto com interna\u00e7\u00f5es hospitalares na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "urSm",
+      "code_hash": "5e99b03d76108e90498deb94fd812749",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "jxvo",
+      "code_hash": "6d510ef70fb1aa85f293d36fed41c4cd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-17-qual-e-o-custo-medio-por-internacao-em-hospitais-da-bahia\">Pergunta 17: Qual \u00e9 o custo m\u00e9dio por interna\u00e7\u00e3o em hospitais da Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "mWxS",
+      "code_hash": "6f7d59e122ed38729d7f88e8c221227b",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "CcZR",
+      "code_hash": "e885a8c2972beb42450fbe934ef6196f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-18-qual-e-o-valor-medio-das-internacoes-com-obito-versus-sem-obito-no-estado-da-bahia\">Pergunta 18: Qual \u00e9 o valor m\u00e9dio das interna\u00e7\u00f5es com \u00f3bito versus sem \u00f3bito no estado da Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YWSi",
+      "code_hash": "adb8f512dffbd9c17f2b0a872eaf2baa",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zlud",
+      "code_hash": "276038d51ed038684ec032341137f994",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"pergunta-19-como-evoluem-os-custos-medios-mensais-das-internacoes-na-bahia\">Pergunta 19: Como evoluem os custos m\u00e9dios mensais das interna\u00e7\u00f5es na Bahia?</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "tZnO",
+      "code_hash": "226e6e4c297f04d458a1f708c842187b",
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
