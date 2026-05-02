@@ -4,6 +4,8 @@ Este projeto foca na Análise Exploratória de Dados (EDA) de internações hosp
 
 O projeto utiliza ferramentas modernas de Python para processar volumes de dados do SUS e extrair insights estratégicos sobre a saúde pública regional.
 
+![Notebook](assets/Screenshot_2026-05-02_11-09-27.png)
+
 ---
 
 ## 🚀 Como Executar
@@ -13,8 +15,8 @@ Este projeto utiliza o **[uv](https://github.com/astral-sh/uv)** para gerenciame
 ### 1. Instalação
 ```bash
 # Clone o repositório
-git clone https://github.com/Maikoandre/DataSUS-Analysis.git
-cd DataSUS-Analysis
+git clone https://github.com/Maikoandre/datasus_analysis.git
+cd datasus_analysis
 
 # Sincronize as dependências (cria o .venv automaticamente)
 uv sync
@@ -42,6 +44,9 @@ O dashboard interativo (`app.py`) apresenta uma visão executiva das Autorizaç�
 *   **Geografia da Saúde**: Top 10 municípios por volume de internação.
 *   **Demografia**: Distribuição de internações por faixa etária.
 *   **Dados Detalhados**: Rankings de hospitais (CNES) por volume e indicadores de obstetrícia/risco.
+
+![Dashboard Dashboard](assets/Screenshot_2026-05-02_11-12-29.png)
+
 
 ---
 
