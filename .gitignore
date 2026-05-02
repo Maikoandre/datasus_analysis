@@ -1,4 +1,5 @@
 __pycache__
+notebooks/__marimo__/session
 data
 .venv
 datasets
